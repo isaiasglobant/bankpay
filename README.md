@@ -1,18 +1,12 @@
-# [Grape](https://github.com/intridea/grape) + [Goliath](https://github.com/postrank-labs/goliath) Example REST API
+# [Grape](https://github.com/intridea/grape) REST API
 
 ## What is this?
 
 * Grape is micro-framework for creating REST-like APIs in Ruby.
-* Goliath is a non-blocking Ruby web server
 
 Together you can create a highly scalable API and use the nice features of Grape to specify how your REST API will work.
 
 ## Getting Started
-
-First take a copy of the project
-
-    git clone https://github.com/djones/grape-goliath-example.git
-    cd grape-goliath-example/
 
 Install dependencies
 
@@ -100,12 +94,3 @@ Migrate your database:
 # Resources
 
 * [The Grapes of Rapid](http://www.confreaks.com/videos/475-rubyconf2010-the-grapes-of-rapid) - everything you need to know about Grape.
-* [Building high-performance (Ruby) web services](http://www.confreaks.com/videos/653-gogaruco2011-0-60-with-goliath-building-high-performance-ruby-web-services) - everything you need to know about Goliath.
-
-# Todo
-
-* Unify all the 'require' statements.
-* Make it work with databases other than PostgreSQL.
-* Write some tests using the API.
-* Add some example authentication.
-* Add support for multiple environments e.g. test, development and production.
