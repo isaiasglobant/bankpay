@@ -13,6 +13,20 @@ module GrapeSkeleton
         get do
           { app_name: GrapeSkeleton::Config.app_name }
         end
+
+        resource 'posts' do
+          get "/" do
+            { posts: Post.all }
+          end
+          
+          # get "/:id" do 
+          #   Post.find(params['id'])
+          # end
+          
+          # post "/create" do
+          #   Post.create(params['post'])
+          # end
+        end
   
   
         ############

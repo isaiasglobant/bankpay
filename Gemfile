@@ -1,16 +1,14 @@
 source 'https://rubygems.org'
-# Get the gems compatible for Heroku's Ruby Version 
+# Get the gems compatible for Heroku's Ruby Version
 ruby '2.7.3'
 
+# Grape framework
 gem 'grape'
 gem 'grape-swagger'
-# gem 'grape-swagger-entity'
-# gem 'goliath'
+# Postgres Database
 gem 'pg', '~> 1.2'
-# gem 'grape-entity'
 # Server
 gem 'puma'
-
 # Foreman (so we can export systemd config files)
 gem 'foreman'
 
@@ -18,6 +16,10 @@ gem 'foreman'
 gem 'dotenv'
 gem 'figaro'
 gem 'settingslogic'
+
+# ORM
+gem 'activerecord', '~> 6.0.4'
+gem 'standalone_migrations', '~> 6.0.0'
 
 gem 'json'
 gem 'mime-types'
@@ -27,6 +29,8 @@ gem 'rack-cors'
 # gem 'em-postgresql-adapter', :git => 'git://github.com/leftbee/em-postgresql-adapter.git'
 # gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
 # gem 'em-synchrony', git: 'git://github.com/igrigorik/em-synchrony.git', require: ['em-synchrony', 'em-synchrony/activerecord']
+
+gem 'byebug'
 
 group :development do
   gem 'guard'

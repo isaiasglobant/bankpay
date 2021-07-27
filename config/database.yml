@@ -1,9 +1,17 @@
-production: &production
-  adapter: em_postgresql
+default: &default
+  adapter: postgresql
   encoding: unicode
-  database: goliathgrape
+  host: database
+  username: postgres
+  password: password
   pool: 5
-  username: root
-  password: 
+  timeout: 5000
+
 development:
-  <<: *production
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
