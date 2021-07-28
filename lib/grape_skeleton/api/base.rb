@@ -1,7 +1,7 @@
 module GrapeSkeleton
     module API
       class Base < Grape::API
-  
+        require 'calculate_ride'
         ########
         # Root #
         ########
@@ -16,7 +16,7 @@ module GrapeSkeleton
 
         resource 'posts' do
           get "/" do
-            { posts: Post.all }
+            CalculateRide.new("11.011315, -74.829380", "11.002569, -74.809068").execute
           end
           
           # get "/:id" do 
