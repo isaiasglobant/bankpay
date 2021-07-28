@@ -1,8 +1,8 @@
 class CalculateRide
   require 'google_api/distance_matrix_calculator'
-  BASE_FEE = 3500
-  VALUE_PER_MIN = 200
-  VALUE_PER_KM = 1000
+  BASE_FEE = 3500 # COP
+  VALUE_PER_MIN = 200 # COP
+  VALUE_PER_KM = 1000 # COP
 
   def initialize(origin, destination)
     @origin = origin
