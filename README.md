@@ -10,32 +10,40 @@ Together you can create a highly scalable API and use the nice features of Grape
 
 Install dependencies
 
-    bundle install
+	bundle install
 
 Next create and migrate your database
 
-    rake db:setup
+	rake db:setup
 
 Finally start the server and you're done!
 
-    bin/foreman start
+	bin/foreman start
 
-    curl http://127.0.0.1:5000/api/v1
+	curl http://127.0.0.1:5000/api/v1
 
 A blank array in response tells us there are no posts yet.
 
 ## Requesting a Ride
-    /ride/create/:rider_id
+	/ride/create/:rider_id
+	params:
 
-    curl --location --request POST 'http://127.0.0.1:5000/api/v1/ride/create/2'
+	```json
+	{
+		"latitude": "11.006506",
+		"longitude": "-74.830908"
+	}
+	```
+
+	curl --location --request POST 'http://127.0.0.1:5000/api/v1/ride/create/2'
 
 ## Finishing a Ride
-    /ride/update/:journey_id
+	/ride/update/:journey_id
 
-    curl --location --request PATCH 'http://127.0.0.1:5000/api/v1/ride/update/2'
+	curl --location --request PATCH 'http://127.0.0.1:5000/api/v1/ride/update/2'
 
 ## Running a Test
-    rspec spec
+	rspec spec
 
 # Extras
 
@@ -45,25 +53,19 @@ You can use Rails-like database commands.
 
 Drop your database:
 
-    rake db:drop
+	rake db:drop
 
 Create your database:
 
-    rake db:create
+	rake db:create
 
 Migrate your database:
 
-    rake db:migrate
+	rake db:migrate
 
 Create and migrate your database:
 
-    rake db:setup
-
-### On Heroku, you can:
-
-Migrate your database:
-
-    heroku run rake db:migrate RACK_ENV=production
+	rake db:setup
 
 # Resources
 

@@ -17,7 +17,7 @@ module Journeys
         rider.email, @payment_reference, rider.payment_source_id, @installments
       ).execute
 
-      journey.update(cost: @cost)
+      journey.update(cost: @cost, status: 'finished')
       journey
     end
   

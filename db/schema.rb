@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 3) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "drivers", force: :cascade do |t|
     t.string "name"
-    t.string "current_location"
+    t.string "final_location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.integer "cost"
     t.string "origin"
     t.string "destination"
+    t.string "status"
     t.bigint "rider_id", null: false
     t.bigint "driver_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -36,12 +37,10 @@ ActiveRecord::Schema.define(version: 5) do
 
   create_table "riders", force: :cascade do |t|
     t.string "name"
-    t.string "origin"
-    t.string "destination"
+    t.string "email"
+    t.string "payment_source_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email"
-    t.integer "payment_source_id"
   end
 
   add_foreign_key "journeys", "drivers"
