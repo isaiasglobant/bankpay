@@ -38,7 +38,7 @@ module GrapeSkeleton
             cost: "$#{journey.cost} COP",
             origin: journey.origin,
             destination: journey.destination,
-            status: 'finished'
+            status: journey.status
           }
         end
       end

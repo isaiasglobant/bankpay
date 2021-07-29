@@ -7,6 +7,12 @@ require 'rack/test'
 require File.expand_path('../config/environment', __dir__)
 
 RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
+
   config.color = true
   config.formatter = :documentation
 
