@@ -26,7 +26,7 @@ module GrapeSkeleton
             id: journey.id,
             origin: journey.origin,
             destination: journey.destination,
-            status: 'started'
+            status: journey.status
           }
         end
 

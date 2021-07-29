@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.integer "cost"
     t.string "origin"
     t.string "destination"
+    t.string "status"
     t.bigint "rider_id", null: false
     t.bigint "driver_id", null: false
     t.datetime "created_at", precision: 6, null: false

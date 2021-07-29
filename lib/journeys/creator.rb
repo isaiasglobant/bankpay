@@ -13,7 +13,8 @@ module Journeys
       assign_a_driver
 
       journey = Journey.create(rider: rider, driver: driver,
-        origin: origin, destination: driver.final_location
+        origin: origin, destination: driver.final_location,
+        status: 'started'
       )
     end
   
