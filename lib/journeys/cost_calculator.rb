@@ -12,6 +12,8 @@ module Journeys
 
     def execute
       get_data
+      raise ArgumentError.new(@response["status"]) if !(@response["status"] == "OK")
+
       calculate_amount
     end
 
