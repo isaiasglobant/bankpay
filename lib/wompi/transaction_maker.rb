@@ -3,7 +3,7 @@ module Wompi
 		include HTTParty
     base_uri 'https://sandbox.wompi.co'
 
-    def initialize(amount_in_cents, customer_email, payment_reference, 
+    def initialize(amount_in_cents, customer_email, payment_reference,
         payment_source_id, installments)
       @amount_in_cents = amount_in_cents
       @customer_email = customer_email
@@ -13,7 +13,9 @@ module Wompi
     end
 
     def execute
-			self.class.get('/v1/transactions', options)
+			self.class.post('/v1/transactions', options,
+        headers: {"Authorization" => "Bearer #{ENV['PRIVATE_KEY']}"
+      )
     end
 
 		def options

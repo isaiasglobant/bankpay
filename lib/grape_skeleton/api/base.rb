@@ -1,7 +1,7 @@
 module GrapeSkeleton
   module API
     class Base < Grape::API
-      require 'calculate_ride'
+      require 'journeys/info_updater'
       ########
       # Root #
       ########
@@ -33,11 +33,7 @@ module GrapeSkeleton
         end
 
         patch "update/:journey_id" do
-          journey = Journey.find(params[:journey_id])
-
-          cost = CalculateRide.new(journey.origin, journey.destination).execute
-
-          journey.update(cost: cost)
+          journey = Journeys::InfoUpdater.new(params[:journey_id]).execute
 
           {
             id: journey.id,
