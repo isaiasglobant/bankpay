@@ -11,7 +11,7 @@ module Journeys
     def execute
       rider = Rider.find(@rider_id)
       assign_a_driver
-      binding.pry
+
       journey = Journey.create(rider: rider, driver: driver,
         origin: origin, destination: driver.final_location
       )
