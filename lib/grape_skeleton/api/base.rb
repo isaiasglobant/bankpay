@@ -2,6 +2,7 @@ module GrapeSkeleton
   module API
     class Base < Grape::API
       require 'journeys/info_updater'
+      require 'journeys/creator'
       ########
       # Root #
       ########
@@ -16,19 +17,13 @@ module GrapeSkeleton
 
       resource 'ride' do
         post "create/:rider_id" do
-          rider = Rider.find(params[:rider_id])
-          drivers = Driver.all
-          driver = drivers[rand(0...drivers.size)]
-
-          journey = Journey.create(rider: rider, driver: driver,
-            origin: rider.origin, destination: rider.destination
-          )
+          journey = Journeys::Creator.new(params[:rider_id]).execute
 
           {
             id: journey.id,
-            driver_name: driver.name,
             origin: journey.origin,
-            destination: journey.destination
+            destination: journey.destination,
+            status: 'started'
           }
         end
 

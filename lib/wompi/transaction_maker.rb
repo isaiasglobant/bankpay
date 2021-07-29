@@ -14,7 +14,7 @@ module Wompi
 
     def execute
 			self.class.post('/v1/transactions', options,
-        headers: {"Authorization" => "Bearer #{ENV['PRIVATE_KEY']}"
+        headers: {"Authorization" => "Bearer #{ENV['PRIVATE_KEY']}"}
       )
     end
 
