@@ -34,13 +34,6 @@ ActiveRecord::Schema.define(version: 5) do
     t.index ["rider_id"], name: "index_journeys_on_rider_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "riders", force: :cascade do |t|
     t.string "name"
     t.string "origin"
