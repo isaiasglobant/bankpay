@@ -1,17 +1,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: database
-  username: postgres
-  password: password
   pool: 5
-  timeout: 5000
+  host: localhost
 
 development:
   <<: *default
+  database: bankpay_development
 
-test:
+test: &test
   <<: *default
-
-production:
-  <<: *default
+  database: bankpay_test
