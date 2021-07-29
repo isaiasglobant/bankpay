@@ -1,46 +1,66 @@
 module GrapeSkeleton
-    module API
-      class Base < Grape::API
-        require 'calculate_ride'
-        ########
-        # Root #
-        ########
-  
-        desc 'Application root' do
-          named 'root'
-        end
-  
-        get do
-          { app_name: GrapeSkeleton::Config.app_name }
+  module API
+    class Base < Grape::API
+      require 'calculate_ride'
+      ########
+      # Root #
+      ########
+
+      desc 'Application root' do
+        named 'root'
+      end
+
+      get do
+        { app_name: GrapeSkeleton::Config.app_name }
+      end
+
+      resource 'ride' do
+        post "create/:rider_id" do
+          rider = Rider.find(params[:rider_id])
+          drivers = Driver.all
+          driver = drivers[rand(0...drivers.size)]
+
+          journey = Journey.create(rider: rider, driver: driver,
+            origin: rider.origin, destination: rider.destination
+          )
+
+          {
+            id: journey.id,
+            driver_name: driver.name,
+            origin: journey.origin,
+            destination: journey.destination
+          }
         end
 
-        resource 'posts' do
-          get "/" do
-            CalculateRide.new("11.011315, -74.829380", "11.002569, -74.809068").execute
-          end
-          
-          # get "/:id" do 
-          #   Post.find(params['id'])
-          # end
-          
-          # post "/create" do
-          #   Post.create(params['post'])
-          # end
+        patch "update/:journey_id" do
+          journey = Journey.find(params[:journey_id])
+
+          cost = CalculateRide.new(journey.origin, journey.destination).execute
+
+          journey.update(cost: cost)
+
+          {
+            id: journey.id,
+            cost: "$#{journey.cost} COP",
+            origin: journey.origin,
+            destination: journey.destination,
+            status: 'finished'
+          }
         end
-  
-  
-        ############
-        # Settings #
-        ############
-  
-        desc 'Get application settings' do
-          named 'settings'
-        end
-  
-        get :settings do
-          GrapeSkeleton::Config.to_h
-        end
-  
       end
+
+      ############
+      # Settings #
+      ############
+
+      desc 'Get application settings' do
+        named 'settings'
+      end
+
+      get :settings do
+        GrapeSkeleton::Config.to_h
+      end
+
     end
   end
+end

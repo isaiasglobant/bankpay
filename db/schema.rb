@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 4) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drivers", force: :cascade do |t|
+    t.string "name"
+    t.string "current_location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.integer "cost"
+    t.string "origin"
+    t.string "destination"
+    t.bigint "rider_id", null: false
+    t.bigint "driver_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_journeys_on_driver_id"
+    t.index ["rider_id"], name: "index_journeys_on_rider_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -22,4 +41,14 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "riders", force: :cascade do |t|
+    t.string "name"
+    t.string "origin"
+    t.string "destination"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "journeys", "drivers"
+  add_foreign_key "journeys", "riders"
 end
