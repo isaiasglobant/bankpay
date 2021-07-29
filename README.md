@@ -29,10 +29,10 @@ A blank array in response tells us there are no posts yet.
 	params:
 
 	```json
-	{
-		"latitude": "11.006506",
-		"longitude": "-74.830908"
-	}
+		{
+			"latitude": "11.006506",
+			"longitude": "-74.830908"
+		}
 	```
 
 	curl --location --request POST 'http://127.0.0.1:5000/api/v1/ride/create/2'
