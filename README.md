@@ -34,6 +34,9 @@ A blank array in response tells us there are no posts yet.
 
     curl --location --request PATCH 'http://127.0.0.1:5000/api/v1/ride/update/2'
 
+## Running a Test
+    rspec spec
+
 # Extras
 
 You can use Rails-like database commands.
