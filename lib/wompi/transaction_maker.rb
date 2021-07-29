@@ -13,13 +13,18 @@ module Wompi
     end
 
     def execute
-			self.class.post('/v1/transactions', options,
-        headers: {"Authorization" => "Bearer #{ENV['PRIVATE_KEY']}"}
-      )
+			self.class.post('/v1/transactions', options)
     end
 
 		def options
 			{
+        body: body,
+        headers: {"Authorization" => "Bearer #{ENV['PRIVATE_KEY']}"}
+      }
+		end
+
+    def body
+      {
         amount_in_cents: @amount_in_cents,
         currency: "COP",
         customer_email: @customer_email,
@@ -28,7 +33,7 @@ module Wompi
         },
         reference: @payment_reference,
         payment_source_id: @payment_source_id
-      }
-		end
+      }.to_json
+    end
   end
 end
