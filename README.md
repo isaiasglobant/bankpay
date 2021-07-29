@@ -18,50 +18,21 @@ Next create and migrate your database
 
 Finally start the server and you're done!
 
-    ruby server.rb -vs
+    bin/foreman start
 
-Now let's list all the posts in the database:
-
-    curl http://localhost:9000/v1/posts.json
-    => []
+    curl http://127.0.0.1:5000/api/v1
 
 A blank array in response tells us there are no posts yet.
 
-## Adding a Post
+## Requesting a Ride
+    /ride/create/:rider_id
 
-    curl -X POST -d '{"post":{"title":"David Jones","body":"this is my message"}}' http://localhost:9000/v1/posts/create
+    curl --location --request POST 'http://127.0.0.1:5000/api/v1/ride/create/2'
 
-Now list all the posts again
+## Finishing a Ride
+    /ride/update/:journey_id
 
-    curl http://localhost:9000/v1/posts.json
-    => [{"body":"this is my message","created_at":"2012-05-11T13:35:03-07:00","id":1,"title":"David Jones","updated_at":"2012-05-11T13:35:03-07:00"}]
-
-Your first post has now shown up.
-
-# Next Steps
-
-This is just a basic Grape API example. You can see the post API specified in `app/api/posts.rb`. You could expand that API and add your own models in `app/models`. Grape's readme has some [basic usage examples](https://github.com/intridea/grape#basic-usage) that will help get you started.
-
-# Deploy on Heroku
-
-First we create a new Heroku application
-
-    heroku create --stack cedar YOURAPPNAME
-
-Next we push the code to Heroku
-
-    git push heroku master
-
-Finally we need to migrate the database on Heroku
-
-    heroku run rake db:migrate RACK_ENV=production
-
-Now you should be able to request posts from your app and get an empty array back as there are no posts saved yet.
-
-    curl http://YOURAPPNAME.herokuapp.com/v1/posts.json
-    => []
-
-Next you could use the "Adding a Post" example above to write your first post to the server.
+    curl --location --request PATCH 'http://127.0.0.1:5000/api/v1/ride/update/2'
 
 # Extras
 
