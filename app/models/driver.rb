@@ -1,4 +1,4 @@
 class Driver < ActiveRecord::Base
   validates :name, presence: true
-  validates :current_location, presence: true
+  validates :final_location, presence: true
 end
