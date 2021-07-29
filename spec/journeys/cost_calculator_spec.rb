@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Journeys::CostCalculator, :type => :model do
-  context "with 2 or more comments" do
+  context "when params are correct" do
     let(:origin) { "11.011315, -74.829380" }
     let(:destination) { "11.002569, -74.809068" }
     let(:response) do
@@ -39,6 +39,32 @@ RSpec.describe Journeys::CostCalculator, :type => :model do
       ).to receive(:execute).and_return(response)
 
       expect(Journeys::CostCalculator.new(origin, destination).execute).to eq(7567)
+    end
+  end
+
+  context "when params are incomplete" do
+    let(:origin) { "11.011315, -74.829380" }
+    let(:destination) { nil }
+
+    let(:response) do
+      JSON.parse(
+        {
+          "destination_addresses": [],
+          "origin_addresses": [],
+          "rows": [],
+          "status": "INVALID_REQUEST"
+        }.to_json
+      )
+    end
+
+    it "return an error" do
+      allow_any_instance_of(
+        GoogleApi::DistanceMatrixCalculator
+      ).to receive(:execute).and_return(response)
+
+      expect {
+        Journeys::CostCalculator.new(origin, destination).execute
+      }.to raise_error(ArgumentError, 'INVALID_REQUEST')
     end
   end
 end
