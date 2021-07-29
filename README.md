@@ -59,12 +59,6 @@ Create and migrate your database:
 
     rake db:setup
 
-### On Heroku, you can:
-
-Migrate your database:
-
-    heroku run rake db:migrate RACK_ENV=production
-
 # Resources
 
 * [The Grapes of Rapid](http://www.confreaks.com/videos/475-rubyconf2010-the-grapes-of-rapid) - everything you need to know about Grape.
