@@ -17,7 +17,6 @@ module GrapeSkeleton
 
       resource 'ride' do
         post "create/:rider_id" do
-
           journey = Journeys::Creator.new(params[:rider_id],
             params[:latitude], params[:longitude]
           ).execute
