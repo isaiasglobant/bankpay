@@ -31,6 +31,8 @@ gem 'dry-validation'
 
 gem 'pry'
 
+gem "factory_bot"
+
 group :development do
   gem 'rake'
 end

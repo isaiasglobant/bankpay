@@ -17,7 +17,6 @@ module GrapeSkeleton
 
       resource 'ride' do
         post "create/:rider_id" do
-
           journey = Journeys::Creator.new(params[:rider_id],
             params[:latitude], params[:longitude]
           ).execute
@@ -38,7 +37,7 @@ module GrapeSkeleton
             cost: "$#{journey.cost} COP",
             origin: journey.origin,
             destination: journey.destination,
-            status: 'finished'
+            status: journey.status
           }
         end
       end

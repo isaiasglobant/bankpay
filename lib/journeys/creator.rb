@@ -21,6 +21,8 @@ module Journeys
     private
 
     def origin
+      return if @latitude.nil? || @longitude.nil?
+
       "#{@latitude}, #{@longitude}"
     end
 
